@@ -3,10 +3,14 @@ Date: 17.V.2011
 Author: pumbur <pumbur@pumbur.net>
 */
 
+html
+{
+  background: #222;
+}
+
 pre code
 {
   display: block; padding: 0.5em;
-  background: #222;
 }
 
 pre .profile .header *,

@@ -2,6 +2,11 @@
 /* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
 /* Original theme - https://github.com/chriskempson/tomorrow-theme */
 /* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+
+html {
+  background: #1d1f21;
+}
+
 .tomorrow-comment, pre .comment, pre .title {
   color: #969896;
 }
@@ -36,7 +41,6 @@
 
 pre code {
   display: block;
-  background: #1d1f21;
   color: #c5c8c6;
   padding: 0.5em;
 }

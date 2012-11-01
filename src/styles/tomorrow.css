@@ -1,4 +1,9 @@
 /* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+
+html {
+  background: white;
+}
+
 .tomorrow-comment, pre .comment, pre .title {
   color: #8e908c;
 }
@@ -33,7 +38,6 @@
 
 pre code {
   display: block;
-  background: white;
   color: #4d4d4c;
   padding: 0.5em;
 }
