@@ -4,9 +4,13 @@ Original style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiac
 
 */
 
+html {
+	background: white;
+}
+
 pre code {
   display: block; padding: 0.5em;
-  background: white; color: black;
+  color: black;
 }
 
 pre .string,

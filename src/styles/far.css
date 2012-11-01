@@ -4,9 +4,12 @@ FAR Style (c) MajestiC <majestic2k@gmail.com>
 
 */
 
+html {
+  background: #000080;
+}
+
 pre code {
   display: block; padding: 0.5em;
-  background: #000080;
 }
 
 pre code,

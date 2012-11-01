@@ -1,6 +1,11 @@
 /* Tomorrow Night Bright Theme */
 /* Original theme - https://github.com/chriskempson/tomorrow-theme */
 /* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+
+html {
+  background: black;
+}
+
 .tomorrow-comment, pre .comment, pre .title {
   color: #969896;
 }
@@ -35,7 +40,6 @@
 
 pre code {
   display: block;
-  background: black;
   color: #eaeaea;
   padding: 0.5em;
 }

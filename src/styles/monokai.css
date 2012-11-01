@@ -2,9 +2,12 @@
 Monokai style - ported by Luigi Maselli - http://grigio.org
 */
 
+html {
+  background: #272822;
+}
+
 pre code {
   display: block; padding: 0.5em;
-  background: #272822;
 }
 
 pre .tag,

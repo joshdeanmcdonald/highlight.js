@@ -4,9 +4,13 @@ XCode style (c) Angel Garcia <angelgarcia.mail@gmail.com>
 
 */
 
+html {
+  background: #fff;
+}
+
 pre code {
   display: block; padding: 0.5em;
-  background: #fff; color: black;
+  color: black;
 }
 
 pre .comment,
