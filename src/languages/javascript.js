@@ -27,7 +27,8 @@ function(hljs) {
           {
             className: 'regexp',
             begin: '/', end: '/[gim]*',
-            contains: [{begin: '\\\\/'}]
+            illegal: '\\n',
+            contains: [{begin: '\\\\[\\\\/]'}]
           },
           { // E4X
             begin: '<', end: '>;',
