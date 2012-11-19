@@ -141,6 +141,14 @@ Django ("django"):
   filter           filter from "|" till the next filter or the end of tag
   argument         filter argument
 
+Handlebars ("handlebars"):
+
+  expression       expression to be evaluated
+  variable         variable
+  begin-block      the beginning of a block
+  end-block        the ending of a block
+  string           string
+
 JSON ("json"):
 
   number           number
