@@ -69,5 +69,6 @@ URL:   http://softwaremaniacs.org/soft/highlight/
 - Dr. Drang <drdrang@gmail.com>
 - Робин Ворд <robin.ward@gmail.com>
 - Дмитрий Медвинский <me@dmedvinsky.name>
-- Jonas Follesø <jonas@follesoe.no>
 - Джейсон Джейкобсон <jason.a.jacobson@gmail.com>
+- Йонас Фоллесо <jonas@follesoe.no>
+- Ден Аллен <dan.j.allen@gmail.com>
