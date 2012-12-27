@@ -21,6 +21,7 @@
   <link rel="alternate stylesheet" title="Solarized - Light" href="styles/solarized_light.css">
   <link rel="alternate stylesheet" title="Arta" href="styles/arta.css">
   <link rel="alternate stylesheet" title="Monokai" href="styles/monokai.css">
+  <link rel="alternate stylesheet" title="Monokai Sublime" href="styles/monokai_sublime.css">
   <link rel="alternate stylesheet" title="XCode" href="styles/xcode.css">
   <link rel="alternate stylesheet" title="Pojoaque" href="styles/pojoaque.css">
   <link rel="alternate stylesheet" title="Rainbow" href="styles/rainbow.css">
@@ -233,6 +234,25 @@ render action: :new
 </code></pre>
 
   <tr>
+    <th>Haml
+    <td class="haml">
+    <pre><code>!!! XML
+%html
+  %body
+    %h1.jumbo{:id=&gt;"a", :style=&gt;'font-weight: normal', :title=&gt;title} highlight.js
+    /html comment
+    -# ignore this line
+    %ul(style='margin: 0')
+    -items.each do |i|
+      %i= i
+    = variable
+    =variable2
+    ~ variable3
+    ~variable4
+    The current year is #{DataTime.now.year}.
+    </code></pre>
+
+  <tr>
     <th>Perl
     <td class="perl">
 <pre><code># loads object
@@ -441,6 +461,73 @@ hello world
 1. one thing (yeah!)
 2. two thing `i can write code`, and `more` wipee!
 </code></pre>
+
+	<tr>
+		<th>AsciiDoc
+		<td class="asciidoc">
+<pre>
+<code>Hello, World!
+============
+Author Name, &lt;author@domain.foo&gt;
+
+you can write text http://example.com[with links], optionally
+using an explicit link:http://example.com[link prefix].
+
+* single quotes around a phrase place 'emphasis'
+** alternatively, you can put underlines around a phrase to add _emphasis_
+* astericks around a phrase make the text *bold*
+
+- escape characters are supported
+- you can escape a quote inside emphasized text like 'here\'s johnny!'
+
+term:: definition
+ another term:: another definition
+
+// this is just a comment
+
+Let's make a break.
+
+''''
+
+////
+we'll be right with you
+
+after this brief interruption.
+////
+
+== We're back!
+
+Want to see a image::images/tiger.png[Tiger]?
+
+.Nested highlighting
+++++
+&lt;this_is inline="xml"&gt;&lt;/this_is&gt;
+++++
+
+____
+asciidoc is so powerful.
+____
+
+another quote:
+
+[quote, Sir Arthur Conan Doyle, The Adventures of Sherlock Holmes]
+____
+When you have eliminated all which is impossible, then whatever remains, however improbable, must be the truth.
+____
+
+Getting Literal
+---------------
+
+ want to get literal? prefix a line with a space.
+
+....
+I'll join that party, too.
+....
+
+. one thing (yeah!)
+. two thing `i can write code`, and `more` wipee!
+
+NOTE: AsciiDoc is quite cool, you should try it.</code></pre>
 
   <tr>
     <th>Django templates
@@ -877,7 +964,7 @@ namespace Test {
 }
 
 /* defining a class */
-class Track : GLib.Object {              /* subclassing 'GLib.Object' */
+class Track : GLib.Object, Test.Foo {              /* subclassing 'GLib.Object' */
   public double mass;                  /* a public field */
   public double name { get; set; }     /* a public property */
   private bool terminated = false;     /* a private field */
@@ -934,6 +1021,60 @@ lines!";
         return 0;
     }
 }
+</code></pre>
+
+  <tr>
+    <th>F#
+    <td class="fsharp">
+<pre><code>open System
+
+// Single line comment...
+(*
+  This is a
+  multiline comment.
+*)
+let checkList alist =
+    match alist with
+    | [] -> 0
+    | [a] -> 1
+    | [a; b] -> 2
+    | [a; b; c] -> 3
+    | _ -> failwith "List is too big!"
+
+
+type IEncoding =
+    abstract Encode : string -> string
+    abstract Decode : string -> string
+
+let text = "Some text..."
+let text2 = @"A ""verbatim"" string..."
+let catalog = """
+Some "long" string...
+"""
+
+let rec fib x = if x <= 2 then 1 else fib(x-1) + fib(x-2)
+
+let fibs =
+    Async.Parallel [ for i in 0..40 -> async { return fib(i) } ]
+    |> Async.RunSynchronously
+
+type Sprocket(gears) =
+  member this.Gears : int = gears
+
+[&ltAbstractClass&gt]
+type Animal =
+  abstract Speak : unit -> unit
+
+type Widget =
+  | RedWidget
+  | GreenWidget
+
+type Point = {X: float; Y: float;}
+
+[&ltMeasure&gt]
+type s
+let minutte = 60&lts&gt
+
 </code></pre>
 
 <tr>
@@ -1490,6 +1631,47 @@ public boolean unpack(container packedClass) {
 }
 </code></pre>
 
+<tr>
+  <th>Oracle Rules Language
+  <td class="ruleslanguage">
+<pre><code>//This is a comment
+ABORT "You experienced an abort.";
+WARN "THIS IS A WARNING";
+CALL "RIDER_X";
+DONE;
+FOR EACH X IN CSV_FILE "d:\lodestar\user\d377.lse"
+ LEAVE FOR;
+END FOR;
+IF ((BILL_KW = 0) AND (KW > 0)) THEN
+END IF;
+INCLUDE "R1";
+LEAVE RIDER;
+SELECT BILL_PERIOD
+   WHEN "WINTER"
+      BLOCK KWH
+      FROM 0 TO 400 CHARGE $0.03709
+      FROM 400 CHARGE $0.03000
+      TOTAL $ENERGY_CHARGE_WIN;
+   WHEN "SUMMER"
+      $VOLTAGE_DISCOUNT_SUM = $0.00
+   OTHERWISE
+      $VOLTAGE_DISCOUNT_SUM = $1.00
+END SELECT;
+/* Report top five peaks */
+LABEL PK.NM "Peak Number";
+SAVE_UPDATE MV TO TABLE "METERVALUE";
+
+FOR EACH INX IN ARRAYUPPERBOUND(#MYARRAY[])
+  #MYARRAY[INX].VALUE = 2;
+  CLEAR #MYARRAY[];
+END FOR
+
+//Interval Data
+HNDL_1_ADD_EDI = INTDADDATTRIBUTE(HNDL_1, "EDI_TRANSACTION", EDI_ID);
+HNDL_1_ADD_VAL_MSG = INTDADDVMSG(HNDL_1,"Missing (Status Code 9) values found");
+EMPTY_HNDL = INTDCREATEHANDLE('05/03/2006 00:00:00', '05/03/2006 23:59:59', 3600, "Y", "0", " ");
+</code></pre>
+
   <tr>
     <th>1С
     <td class="1c">
@@ -1980,7 +2162,6 @@ foo %union% bar
 `"test"`
 
 </code></pre>
-
 
 </table>
 

@@ -41,6 +41,18 @@ Ruby ("ruby"):
   parent           name of a parent class
   symbol           symbol
 
+Haml ("haml"):
+
+  tag              any tag starting with "%"
+  title            tag's name
+  attribute        tag's attribute
+  keyword          tag's attribute that is a keyword
+  string           attribute's value that is a string
+  value            attribute's value, shorthand id or class for tag
+  comment          comment
+  doctype          !!! declaration
+  bullet           line defined by variable
+
 Perl ("perl"):
 
   keyword          keyword
@@ -126,6 +138,21 @@ Markdown ("markdown"):
   horizontal_rule   horizontal rule
   link_label        link label
   link_url          link url
+
+AsciiDoc ("asciidoc"):
+
+  header            heading
+  bullet            list or labeled bullet
+  emphasis          emphasis
+  strong            strong emphasis
+  blockquote        blockquote
+  code              inline or block code
+  horizontal_rule   horizontal rule
+  link_label        link or image label
+  link_url          link or image url
+  comment           comment
+  attribute         document attribute, block attributes
+  label             admonition label
 
 Django ("django"):
 
@@ -290,6 +317,15 @@ C# ("cs"):
   comment          commment
   xmlDocTag        xmldoc tag ("///", "<!--", "-->", "<..>")
 
+F# ("fsharp"):
+  keywords         keyword
+  number           number
+  string           string
+  commment         comment
+  class            any custom F# type
+  title            the name of a custom F# type
+  annotation       any attribute
+ 
 D language ("d"):
 
   comment          comment
@@ -442,6 +478,15 @@ Axapta ("axapta"):
   params           everything in parentheses inside a class header
   inheritance      keywords "extends" and "implements" inside class header
   preprocessor     preprocessor directive
+
+Oracle Rules Language ("ruleslanguage"):
+
+  comment          comment
+  string           string constant
+  number           number
+  keyword          language keywords
+  built_in         built-in functions
+  array            array stem
 
 1C ("1c"):
 
