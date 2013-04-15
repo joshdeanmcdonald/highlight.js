@@ -31,6 +31,10 @@
   <link rel="alternate stylesheet" title="Tomorrow Night Blue" href="styles/tomorrow-night-blue.css">
   <link rel="alternate stylesheet" title="Tomorrow Night Eighties" href="styles/tomorrow-night-eighties.css">
   <link rel="alternate stylesheet" title="Railscasts" href="styles/railscasts.css">
+  <link rel="alternate stylesheet" title="Obsidian" href="styles/obsidian.css">
+  <link rel="alternate stylesheet" title="Docco" href="styles/docco.css">
+  <link rel="alternate stylesheet" title="Mono Blue" href="styles/mono-blue.css">
+  <link rel="alternate stylesheet" title="Foundation" href="styles/foundation.css">
 
   <style>
     body {
@@ -220,7 +224,7 @@ module ABC::DEF
   # @return [String] nothing
   def foo(test)
     Thread.new do |blockvar|
-      ABC::DEF.reverse(:a_symbol, :'a symbol', :<=>, 'test' + test)
+      ABC::DEF.reverse(:a_symbol, :'a symbol', :&lt;=&gt;, 'test' + test)
     end.join
   end
 
@@ -436,6 +440,53 @@ func main() {
 &lt;/body&gt;
 </code></pre>
 
+  <tr>
+    <th>Lasso
+    <td class="lasso">
+<pre><code>&lt;?LassoScript
+/* Lasso 8 */
+  local('query' = 'SELECT * FROM `'+var:'table'+'` WHERE `id` &gt; 10
+    ORDER BY `Name` LIMIT 30');
+  Inline: -Username=$DBuser, -Password=$DBpass, -Database=$DBname, -sql=#query;
+    var("class.name" = (found_count != 0 ? `subtotal` | `nonefound`));
+    records;
+      output: ?&gt;&lt;tr&gt;[loop_count]&lt;/tr&gt;&lt;?=;
+    /records;
+  /Inline;
+?&gt;&lt;div class="[$class.name]"&gt;[found_count]&lt;/div&gt;
+[noprocess] causes [delimiters] to be skipped until the next [/noprocess]
+&lt;?lasso
+/* Lasso 9 */
+  define strings_combine(value::string, ...other)::string =&gt; {
+    local(result = #value-&gt;append(#other-&gt;asString))
+    return #result
+  }
+  /**! descriptive text */
+  define person =&gt; type {
+    data name::string, protected nickname
+    data birthdate::date
+    data private ssn = null
+    public showName() =&gt; return .'name'
+    protected fullName() =&gt; '"' + .nickname + '"' + .'name'
+    public ssnListed =&gt; .ssn ? true | false
+  }
+  define person-&gt;name=(value) =&gt; {
+    .'name' = #value
+    return self-&gt;'name'
+  }
+  // query expression
+  with n in array(-1, 0xABCD, 3.14159e14)
+  let swapped = pair(#n-&gt;second, #n-&gt;first)
+  group #swapped by #n-&gt;first into t
+  let key = #t-&gt;key
+  order by #key
+  select pair(#key, #t)
+  do {^
+    #n-&gt;upperCase
+  ^}
+?&gt;
+</code></pre>
+
 	<tr>
 		<th>Markdown
 		<td class="markdown">
@@ -476,6 +527,7 @@ using an explicit link:http://example.com[link prefix].
 * single quotes around a phrase place 'emphasis'
 ** alternatively, you can put underlines around a phrase to add _emphasis_
 * astericks around a phrase make the text *bold*
+* pluses around a phrase make it +monospaced+
 
 - escape characters are supported
 - you can escape a quote inside emphasized text like 'here\'s johnny!'
@@ -487,7 +539,7 @@ term:: definition
 
 Let's make a break.
 
-''''
+'''
 
 ////
 we'll be right with you
@@ -594,6 +646,83 @@ li[lang=ru] {
 </code></pre>
 
   <tr>
+    <th>SCSS
+    <td class="scss">
+<pre><code>@import "compass/reset";
+
+// variables
+$colorGreen: #008000;
+$colorGreenDark: darken($colorGreen, 10);
+
+@mixin container {
+    max-width: 980px;
+}
+
+// mixins with parameters
+@mixin button($color:green) {
+    @if ($color == green) {
+        background-color: #008000;
+    }
+    @else if ($color == red) {
+        background-color: #B22222;
+    }
+}
+
+button {
+    @include button(red);
+}
+
+div,
+.navbar,
+#header,
+input[type="input"] {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    width: auto;
+    margin: 0 auto;
+    display: block;
+}
+
+.row-12 > [class*="spans"] {
+    border-left: 1px solid #B5C583;
+}
+
+// nested definitions
+ul {
+    width: 100%;
+    padding: {
+        left: 5px; right: 5px;
+    }
+  li {
+      float: left; margin-right: 10px;
+      .home {
+          background: url('http://placehold.it/20') scroll no-repeat 0 0;
+    }
+  }
+}
+
+.banner {
+    @extend .container;
+}
+
+a {
+  color: $colorGreen;
+  &amp;:hover { color: $colorGreenDark; }
+  &amp;:visited { color: #c458cb; }
+}
+
+@for $i from 1 through 5 {
+    .span#{$i} {
+        width: 20px*$i;
+    }
+}
+
+@mixin mobile {
+  @media screen and (max-width : 600px) {
+    @content;
+  }
+}</code></pre>
+
+  <tr>
     <th>JSON
     <td class="json">
 <pre><code>[
@@ -626,22 +755,34 @@ li[lang=ru] {
   }
   for (var i = 0 / 2; i &lt; classes.length; i++) { // "0 / 2" should not be parsed as regexp
     if (checkCondition(classes[i]) === undefined)
-      return /\d+/g;
+      return /\d+[\s/]/g;
   }
 }</code></pre>
 
   <tr>
     <th>CoffeeScript
     <td class="coffeescript">
-<pre><code>grade = (student) -&gt;
+<pre><code># Divisions
+x = 6/foo/i
+x = 6 /foo
+x = 6 / foo
+x = 6 /foo * 2/gm
+x = f /foo
+x = f / foo / gm
+x = f /foo * 2/6
+
+# Regexps
+x = f /6 * 2/ - 3
+x = f /foo * 2/gm
+x = if true then /\n/ else /[.,]+/
+
+grade = (student, period=(if b? then 7 else 6), messages={"A": "Excellent"}) -&gt;
   if student.excellentWork
     "A+"
   else if student.okayStuff
     if student.triedHard then "B" else "B-"
   else
     "C"
-
-eldest = if 24 &gt; 21 then "Liz" else "Ike"
 
 square = (x) -> x * x
 
@@ -666,7 +807,7 @@ hi = `function() {
 }`
 
 heredoc = """
-CoffeeScript numbers test #{ 010 + 0xf / 0b10 }
+CoffeeScript subst test #{ 010 + 0xf / 0b10 + "nested string #{ /\n/ }"}
 """
 
 ###
@@ -676,12 +817,6 @@ Released under the MIT License
 
 OPERATOR = /// ^ (
 ?: [-=]>             # function
- | [-+*/%<>&|^!?=]=  # compound assign / compare
- | >>>=?             # zero-fill right shift
- | ([-+:])\1         # doubles
- | ([&|<>])\2=?      # logic / shift
- | \?\.              # soak access
- | \.{2,3}           # range or splat
 ) ///</code></pre>
 
 <tr>
@@ -744,6 +879,53 @@ for i = 0 to ubound(ini_strings)
       end if
     end if
 next</code></pre>
+
+  <tr>
+    <th>VB.NET
+    <td class="vbnet">
+<pre><code>Import System
+Import System.IO
+#Const DEBUG = True
+
+Namespace Highlighter.Test
+  ''' &lt;summary&gt;This is an example class.&lt;/summary&gt;
+  Public Class Program
+    Protected Shared hello As Integer = 3
+    Private Const ABC As Boolean = False
+
+#Region "Code"
+    ' Cheers!
+    &lt;STAThread()&gt; _
+    Public Shared Sub Main(ByVal args() As String, ParamArray arr As Object) Handles Form1.Click
+      On Error Resume Next
+      If ABC Then
+        While ABC : Console.WriteLine() : End While
+        For i As Long = 0 To 1000 Step 123
+          Try
+            System.Windows.Forms.MessageBox.Show(CInt("1").ToString())
+          Catch ex As Exception       ' What are you doing? Well...
+            Dim exp = CType(ex, IOException)
+            REM ORZ
+            Return
+          End Try
+        Next
+      Else
+        Dim l As New System.Collections.List&lt;String&gt;()
+        SyncLock l
+          If TypeOf l Is Decimal And l IsNot Nothing Then
+            RemoveHandler button1.Paint, delegate
+          End If
+          Dim d = New System.Threading.Thread(AddressOf ThreadProc)
+          Dim a = New Action(Sub(x, y) x + y)
+          Static u = From x As String In l Select x.Substring(2, 4) Where x.Length > 0
+        End SyncLock
+        Do : Laugh() : Loop Until hello = 4
+      End If
+    End Sub
+#End Region
+  End Class
+End Namespace
+</code></pre>
 
   <tr>
     <th>HTTP
@@ -1025,6 +1207,13 @@ lines!";
         return 0;
     }
 }
+
+async Task&lt;int&gt; AccessTheWebAsync()
+{
+    // ...
+    string urlContents = await getStringTask;
+    return urlContents.Length;
+}
 </code></pre>
 
   <tr>
@@ -1039,16 +1228,16 @@ lines!";
 *)
 let checkList alist =
     match alist with
-    | [] -> 0
-    | [a] -> 1
-    | [a; b] -> 2
-    | [a; b; c] -> 3
-    | _ -> failwith "List is too big!"
+    | [] -&gt; 0
+    | [a] -&gt; 1
+    | [a; b] -&gt; 2
+    | [a; b; c] -&gt; 3
+    | _ -&gt; failwith "List is too big!"
 
 
 type IEncoding =
-    abstract Encode : string -> string
-    abstract Decode : string -> string
+    abstract Encode : string -&gt; string
+    abstract Decode : string -&gt; string
 
 let text = "Some text..."
 let text2 = @"A ""verbatim"" string..."
@@ -1056,18 +1245,18 @@ let catalog = """
 Some "long" string...
 """
 
-let rec fib x = if x <= 2 then 1 else fib(x-1) + fib(x-2)
+let rec fib x = if x &lt;= 2 then 1 else fib(x-1) + fib(x-2)
 
 let fibs =
-    Async.Parallel [ for i in 0..40 -> async { return fib(i) } ]
-    |> Async.RunSynchronously
+    Async.Parallel [ for i in 0..40 -&gt; async { return fib(i) } ]
+    |&gt; Async.RunSynchronously
 
 type Sprocket(gears) =
   member this.Gears : int = gears
 
-[&ltAbstractClass&gt]
+[&lt;AbstractClass&gt;]
 type Animal =
-  abstract Speak : unit -> unit
+  abstract Speak : unit -&gt; unit
 
 type Widget =
   | RedWidget
@@ -1075,9 +1264,9 @@ type Widget =
 
 type Point = {X: float; Y: float;}
 
-[&ltMeasure&gt]
+[&lt;Measure&gt;]
 type s
-let minutte = 60&lts&gt
+let minutte = 60&lt;s&gt;
 
 </code></pre>
 
@@ -1232,7 +1421,7 @@ layout(triangles) in;
 layout(triangle_strip, max_vertices = 3) out;
 
 void main() {
-  for(int i = 0; i < gl_in.length(); i++) {
+  for(int i = 0; i &lt; gl_in.length(); i++) {
     gl_Position = gl_in[i].gl_Position;
     EmitVertex();
   }
@@ -1355,11 +1544,11 @@ heapExample
 (def
   ^{:macro true
     :added "1.0"}
-  let (fn* let [&form &env & decl] (cons 'let* decl)))
+  let (fn* let [&amp;form &amp;env &amp; decl] (cons 'let* decl)))
 
 (def
 
- defn (fn defn [&form &env name & fdecl]
+ defn (fn defn [&amp;form &amp;env name &amp; fdecl]
         (let [m (conj {:arglists (list 'quote (sigs fdecl))} m)
               m (let [inline (:inline m)
                       ifn (first inline)
@@ -1564,7 +1753,7 @@ genApacheConf(){
  else
   full_domain=$2.$1
  fi
- host_root="${APACHE_HOME_DIR}$1/$2"
+ host_root="${APACHE_HOME_DIR}$1/$2/$(title)"
  echo -e "# Host $1/$2 :"
 }
 </code></pre>
@@ -1835,21 +2024,22 @@ $$
     <td class="brainfuck">
 <pre><code>++++++++++
 [ 3*10 and 10*10
-  ->+++>++++++++++<<
-]>>
+  -&gt;+++&gt;++++++++++&lt;&lt;
+]&gt;&gt;
 [ filling cells
-  ->++>>++>++>+>++>>++>++>++>++>++>++>++>++>++>++>++[<]<[<]<[<]>>
-]<
-+++++++++<<
+  -&gt;++&gt;&gt;++&gt;++&gt;+&gt;++&gt;&gt;++&gt;++&gt;++&gt;++&gt;++&gt;++&gt;++&gt;++&gt;++&gt;++&gt;++[&lt;]&lt;[&lt;]&lt;[&lt;]&gt;&gt;
+]&lt;
++++++++++&lt;&lt;
 [ rough codes correction loop
-  ->>>+>+>+>+++>+>+>+>+>+>+>+>+>+>+>+>+>+>+[<]<
+  -&gt;&gt;&gt;+&gt;+&gt;+&gt;+++&gt;+&gt;+&gt;+&gt;+&gt;+&gt;+&gt;+&gt;+&gt;+&gt;+&gt;+&gt;+&gt;+&gt;+[&lt;]&lt;
 ]
 more accurate сodes correction
->>>++>
--->+++++++>------>++++++>++>+++++++++>++++++++++>++++++++>--->++++++++++>------>++++++>
-++>+++++++++++>++++++++++++>------>+++
+&gt;&gt;&gt;++&gt;
+--&gt;+++++++&gt;------&gt;++++++&gt;++&gt;+++++++++&gt;++++++++++&gt;++++++++&gt;---&gt;++++++++++&gt;------&gt;++++++&gt;
+++&gt;+++++++++++&gt;++++++++++++&gt;------&gt;+++
 rewind and output
-[<]>[.>]</code></pre>
+[&lt;]&gt;[.&gt;]
+</code></pre>
 
   <tr>
     <th>Haskell
@@ -1876,8 +2066,8 @@ import Network.Socket.ByteString (sendTo, recv, recvFrom)
 
 -- Type class for converting StringLike types to and from strict ByteStrings
 class DataPacket a where
-  toStrictBS :: a -> Strict.ByteString
-  fromStrictBS :: Strict.ByteString -> a
+  toStrictBS :: a -&gt; Strict.ByteString
+  fromStrictBS :: Strict.ByteString -&gt; a
 
 instance DataPacket Strict.ByteString where
   toStrictBS = id
@@ -1885,16 +2075,16 @@ instance DataPacket Strict.ByteString where
   fromStrictBS = id
   {-# INLINE fromStrictBS #-}
 
-openBoundUDPPort :: String -> Int -> IO Socket
+openBoundUDPPort :: String -&gt; Int -&gt; IO Socket
 openBoundUDPPort uri port = do
-  s <- getUDPSocket
-  bindAddr <- inet_addr uri
+  s &lt;- getUDPSocket
+  bindAddr &lt;- inet_addr uri
   let a = SockAddrInet (toEnum port) bindAddr
   bindSocket s a
   return s
 
-pingUDPPort :: Socket -> SockAddr -> IO ()
-pingUDPPort s a = sendTo s (Strict.singleton 0) a >> return ()
+pingUDPPort :: Socket -&gt; SockAddr -&gt; IO ()
+pingUDPPort s a = sendTo s (Strict.singleton 0) a &gt;&gt; return ()
 </code></pre>
 
   <tr>
@@ -1914,36 +2104,36 @@ pingUDPPort s a = sendTo s (Strict.singleton 0) a >> return ()
     channel
    }).
 
-test(Foo)->Foo.
+test(Foo)-&gt;Foo.
 
-init([Shell, Exec]) ->
+init([Shell, Exec]) -&gt;
     {ok, #state{shell = Shell, exec = Exec}};
-init([Shell]) ->
+init([Shell]) -&gt;
     false = not true,
     io:format("Hello, \"~p!~n", [atom_to_list('World')]),
     {ok, #state{shell = Shell}}.
 
-concat([Single]) -> Single;
-concat(RList) ->
+concat([Single]) -&gt; Single;
+concat(RList) -&gt;
     EpsilonFree = lists:filter(
-        fun (Element) ->
+        fun (Element) -&gt;
             case Element of
-                epsilon -> false;
-                _ -> true
+                epsilon -&gt; false;
+                _ -&gt; true
             end
         end,
         RList),
     case EpsilonFree of
-        [Single] -> Single;
-        Other -> {concat, Other}
+        [Single] -&gt; Single;
+        Other -&gt; {concat, Other}
     end.
 
-union_dot_union({union, _}=U1, {union, _}=U2) ->
+union_dot_union({union, _}=U1, {union, _}=U2) -&gt;
     union(lists:flatten(
         lists:map(
-            fun (X1) ->
+            fun (X1) -&gt;
                 lists:map(
-                    fun (X2) ->
+                    fun (X2) -&gt;
                         concat([X1, X2])
                     end,
                     union_to_list(U2)
@@ -1956,32 +2146,32 @@ union_dot_union({union, _}=U1, {union, _}=U2) ->
   <tr>
     <th>Erlang REPL
     <td class="erlang-repl">
-<pre><code>1> Str = "abcd".
+<pre><code>1&gt; Str = "abcd".
 "abcd"
-2> L = test:length(Str).
+2&gt; L = test:length(Str).
 4
-3> Descriptor = {L, list_to_atom(Str)}.
+3&gt; Descriptor = {L, list_to_atom(Str)}.
 {4,abcd}
-4> L.
+4&gt; L.
 4
-5> b().
+5&gt; b().
 Descriptor = {4,abcd}
 L = 4
 Str = "abcd"
 ok
-6> f(L).
+6&gt; f(L).
 ok
-7> b().
+7&gt; b().
 Descriptor = {4,abcd}
 Str = "abcd"
 ok
-8> {L, _} = Descriptor.
+8&gt; {L, _} = Descriptor.
 {4,abcd}
-9> L.
+9&gt; L.
 4
-10> 2#101.
+10&gt; 2#101.
 5
-11> 1.85e+3.
+11&gt; 1.85e+3.
 1850
 </code></pre>
 
@@ -2007,7 +2197,7 @@ export fac, test1;
 12E+99_f64;                        // type f64
 
 /* Factorial */
-fn fac(n: int) -> int {
+fn fac(n: int) -&gt; int {
     let s: str = "This is
 a multi-line string.
 
@@ -2015,39 +2205,39 @@ It ends with an unescaped '\"'.";
     let c: char = 'Ф';
 
     let result = 1, i = 1;
-    while i <= n { // No parens around the condition
+    while i &lt;= n { // No parens around the condition
         result *= i;
         i += 1;
     }
     ret result;
 }
 
-pure fn pure_length&lt;T>(ls: list&lt;T>) -> uint { /* ... */ }
+pure fn pure_length&lt;T&gt;(ls: list&lt;T&gt;) -&gt; uint { /* ... */ }
 
-type t = map::hashtbl&lt;int,str>;
-let x = id::&lt;int>(10);
+type t = map::hashtbl&lt;int,str&gt;;
+let x = id::&lt;int&gt;(10);
 
 // Define some modules.
 #[path = "foo.rs"]
 mod foo;
 
-iface seq&lt;T> {
-    fn len() -> uint;
+iface seq&lt;T&gt; {
+    fn len() -&gt; uint;
 }
 
-impl &lt;T> of seq&lt;T> for [T] {
-    fn len() -> uint { vec::len(self) }
+impl &lt;T&gt; of seq&lt;T&gt; for [T] {
+    fn len() -&gt; uint { vec::len(self) }
     fn iter(b: fn(T)) {
         for elt in self { b(elt); }
     }
 }
 
-enum list&lt;T> {
+enum list&lt;T&gt; {
     nil;
-    cons(T, @list&lt;T>);
+    cons(T, @list&lt;T&gt;);
 }
 
-let a: list&lt;int> = cons(7, @cons(13, @nil));
+let a: list&lt;int&gt; = cons(7, @cons(13, @nil));
 </code></pre>
 
   <tr>
@@ -2062,7 +2252,7 @@ plot(points(:,1),points(:,2));
 for i = 1: n-1
     len(i) = points(i + 1, 1) - points(i, 1);
 end
-while(max(len) > 2 * min(len))
+while(max(len) &gt; 2 * min(len))
     [d, i] = max(len);
     k = on_margin(points, i, d, -1);
     m = on_margin(points, i + 1, d, 1);
@@ -2098,7 +2288,7 @@ foo_cell = {1, 2, 3; 4, 5, 6}''.'.';
     <td class="r">
 <pre><code>library(ggplot2)
 
-centre <- function(x, type, ...) {
+centre &lt;- function(x, type, ...) {
   switch(type,
          mean = mean(x),
          median = median(x),
@@ -2127,8 +2317,8 @@ foo "bar" baz
 1L + 30
 plot(cars, xlim=20)
 plot(cars, xlim=0x20)
-foo<-30
-my.data.3 <- read() # not a number
+foo&lt;-30
+my.data.3 &lt;- read() # not a number
 c(1,2,3)
 1%%2
 
@@ -2157,8 +2347,8 @@ na_character_ na_complex_ Function While Repeat
 For If In Else Next Break .. .... "NULL" `NULL` 'NULL'
 
 # operators
-+, -, *, /, %%, ^, >, >=, <, <=, ==, !=, !, &, |, ~,
-->, <-, <<-, $, :, ::
++, -, *, /, %%, ^, &gt;, &gt;=, &lt;, &lt;=, ==, !=, !, &amp;, |, ~,
+-&gt;, &lt;-, &lt;&lt;-, $, :, ::
 
 # infix operator
 foo %union% bar
@@ -2166,6 +2356,97 @@ foo %union% bar
 `"test"`
 
 </code></pre>
+
+
+  <tr>
+    <th>Mizar
+    <td class="mizar">
+<pre><code>::: ## Lambda calculus
+
+environ
+
+  vocabularies LAMBDA,
+      NUMBERS,
+      NAT_1, XBOOLE_0, SUBSET_1, FINSEQ_1, XXREAL_0, CARD_1,
+      ARYTM_1, ARYTM_3, TARSKI, RELAT_1, ORDINAL4, FUNCOP_1;
+
+  :: etc...
+
+begin
+
+reserve D for DecoratedTree,
+        p,q,r for FinSequence of NAT,
+        x for set;
+
+definition
+  let D;
+
+  attr D is LambdaTerm-like means
+    (dom D qua Tree) is finite &amp;
+::&gt;                          *143,306
+    for r st r in dom D holds
+      r is FinSequence of {0,1} &amp;
+      r^&lt;*0*&gt; in dom D implies D.r = 0;
+end;
+
+registration
+  cluster LambdaTerm-like for DecoratedTree of NAT;
+  existence;
+::&gt;       *4
+end;
+
+definition
+  mode LambdaTerm is LambdaTerm-like DecoratedTree of NAT;
+end;
+
+::: Then we extend this ordinary one-step beta reduction, that is,
+:::  any subterm is also allowed to reduce.
+definition
+  let M,N;
+
+  pred M beta N means
+    ex p st
+      M|p beta_shallow N|p &amp;
+      for q st not p is_a_prefix_of q holds
+        [r,x] in M iff [r,x] in N;
+end;
+
+theorem Th4:
+  ProperPrefixes (v^&lt;*x*&gt;) = ProperPrefixes v \/ {v}
+proof
+  thus ProperPrefixes (v^&lt;*x*&gt;) c= ProperPrefixes v \/ {v}
+  proof
+    let y;
+    assume y in ProperPrefixes (v^&lt;*x*&gt;);
+    then consider v1 such that
+A1: y = v1 and
+A2: v1 is_a_proper_prefix_of v^&lt;*x*&gt; by TREES_1:def 2;
+ v1 is_a_prefix_of v &amp; v1 &lt;&gt; v or v1 = v by A2,TREES_1:9;
+then
+ v1 is_a_proper_prefix_of v or v1 in {v} by TARSKI:def 1,XBOOLE_0:def 8;
+then  y in ProperPrefixes v or y in {v} by A1,TREES_1:def 2;
+    hence thesis by XBOOLE_0:def 3;
+  end;
+  let y;
+  assume y in ProperPrefixes v \/ {v};
+then A3: y in ProperPrefixes v or y in {v} by XBOOLE_0:def 3;
+A4: now
+    assume y in ProperPrefixes v;
+    then consider v1 such that
+A5: y = v1 and
+A6: v1 is_a_proper_prefix_of v by TREES_1:def 2;
+ v is_a_prefix_of v^&lt;*x*&gt; by TREES_1:1;
+then  v1 is_a_proper_prefix_of v^&lt;*x*&gt; by A6,XBOOLE_1:58;
+    hence thesis by A5,TREES_1:def 2;
+  end;
+ v^{} = v by FINSEQ_1:34;
+  then
+ v is_a_prefix_of v^&lt;*x*&gt; &amp; v &lt;&gt; v^&lt;*x*&gt; by FINSEQ_1:33,TREES_1:1;
+then  v is_a_proper_prefix_of v^&lt;*x*&gt; by XBOOLE_0:def 8;
+then  y in ProperPrefixes v or y = v &amp; v in ProperPrefixes (v^&lt;*x*&gt;)
+  by A3,TARSKI:def 1,TREES_1:def 2;
+  hence thesis by A4;
+end;</code></pre>
 
 </table>
 

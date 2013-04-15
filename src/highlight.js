@@ -136,9 +136,13 @@ function() {
 
   function compileLanguage(language) {
 
+    function reStr(re) {
+        return (re && re.source) || re;
+    }
+
     function langRe(value, global) {
       return RegExp(
-        value,
+        reStr(value),
         'm' + (language.case_insensitive ? 'i' : '') + (global ? 'g' : '')
       );
     }
@@ -181,7 +185,7 @@ function() {
           mode.end = '\\B|\\b';
         if (mode.end)
           mode.endRe = langRe(mode.end);
-        mode.terminator_end = mode.end || '';
+        mode.terminator_end = reStr(mode.end) || '';
         if (mode.endsWithParent && parent.terminator_end)
           mode.terminator_end += (mode.end ? '|' : '') + parent.terminator_end;
       }
@@ -204,13 +208,13 @@ function() {
 
       var terminators = [];
       for (var i = 0; i < mode.contains.length; i++) {
-        terminators.push(mode.contains[i].begin);
+        terminators.push(reStr(mode.contains[i].begin));
       }
       if (mode.terminator_end) {
-        terminators.push(mode.terminator_end);
+        terminators.push(reStr(mode.terminator_end));
       }
       if (mode.illegal) {
-        terminators.push(mode.illegal);
+        terminators.push(reStr(mode.illegal));
       }
       mode.terminators = terminators.length ? langRe(terminators.join('|'), true) : {exec: function(s) {return null;}};
     }
@@ -312,7 +316,6 @@ function() {
         mode_buffer = lexem;
       }
       top = Object.create(mode, {parent: {value: top}});
-      relevance += mode.relevance;
     }
 
     function processLexem(buffer, lexem) {
@@ -331,7 +334,8 @@ function() {
 
       var end_mode = endOfMode(top, lexem);
       if (end_mode) {
-        if (!(end_mode.returnEnd || end_mode.excludeEnd)) {
+        var origin = top;
+        if (!(origin.returnEnd || origin.excludeEnd)) {
           mode_buffer += lexem;
         }
         result += processBuffer();
@@ -339,20 +343,21 @@ function() {
           if (top.className) {
             result += '</span>';
           }
+          relevance += top.relevance;
           top = top.parent;
         } while (top != end_mode.parent);
-        if (end_mode.excludeEnd) {
+        if (origin.excludeEnd) {
           result += escape(lexem);
         }
         mode_buffer = '';
         if (end_mode.starts) {
           startNewMode(end_mode.starts, '');
         }
-        return end_mode.returnEnd ? 0 : lexem.length;
+        return origin.returnEnd ? 0 : lexem.length;
       }
 
       if (isIllegal(lexem, top))
-        throw 'Illegal';
+        throw new Error('Illegal lexem "' + lexem + '" for mode "' + (top.className || '<unnamed>') + '"');
 
       /*
       Parser should not reach this point as all types of lexems should be caught
@@ -388,7 +393,7 @@ function() {
         language: language_name
       };
     } catch (e) {
-      if (e == 'Illegal') {
+      if (e.message.indexOf('Illegal') != -1) {
         return {
           relevance: 0,
           keyword_count: 0,
@@ -589,6 +594,19 @@ function() {
     begin: this.BINARY_NUMBER_RE,
     relevance: 0
   };
+  this.REGEXP_MODE = {
+    className: 'regexp',
+    begin: /\//, end: /\/[gim]*/,
+    illegal: /\n/,
+    contains: [
+      this.BACKSLASH_ESCAPE,
+      {
+        begin: /\[/, end: /\]/,
+        relevance: 0,
+        contains: [this.BACKSLASH_ESCAPE]
+      }
+    ]
+  }
 
   // Utility functions
   this.inherit = function(parent, obj) {

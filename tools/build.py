@@ -64,7 +64,7 @@ def lang_name(filename):
 def mapnonstrings(source, func):
     result = []
     pos = 0
-    quotes = re.compile('[\'"]')
+    quotes = re.compile('[\'"/]')
     while pos < len(source):
         match = quotes.search(source, pos)
         end = match.start() if match else len(source)
@@ -119,7 +119,7 @@ def language_filenames(src_path, languages):
     Resolves dependencies and returns the list of actual language filenames
     '''
     lang_path = os.path.join(src_path, 'languages')
-    filenames = [os.path.join(lang_path, f) for f in os.listdir(lang_path)]
+    filenames = [os.path.join(lang_path, f) for f in os.listdir(lang_path) if f.endswith('.js')]
     headers = [parse_header(f) for f in filenames]
     infos = [(h, f) for h, f in zip(headers, filenames) if h]
 

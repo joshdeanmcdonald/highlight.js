@@ -74,3 +74,11 @@ Contributors:
 - Dan Allen <dan.j.allen@gmail.com>
 - noformnocontent <i@noformnocontent.com>
 - Damien White <damien.white@visoftinc.com>
+- Alexander Marenin <great_muchacho@mail.ru>
+- Cédric Néhémie <cedric.nehemie@gmail.com>
+- Simon Madine <simon@angryrobotzombie.com>
+- Benjamin Pannell <contact@sierrasoftworks.com>
+- Eric Knibbe <eric@lassosoft.com>
+- Poren Chiang <ren.chiang@gmail.com>
+- Kelley van Evert <kelleyvanevert@gmail.com>
+- Kurt Emch <kurt@kurtemch.com>
