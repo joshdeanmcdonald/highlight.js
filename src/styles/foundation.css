@@ -6,8 +6,13 @@ Version: 1.0
 Date: 2013-04-02
 */
 
+html {
+  background: #eee;
+}
+
 pre code {
-  display: block; padding: 0.5em;
+  display: block;
+  padding: 0.5em;
   background: #eee;
 }
 

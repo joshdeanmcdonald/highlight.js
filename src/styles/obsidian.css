@@ -3,8 +3,13 @@
  * ported by Alexander Marenin (http://github.com/ioncreature)
  */
 
+html {
+  background: #282B2E;
+}
+
 pre code {
-    display: block; padding: 0.5em;
+    display: block;
+    padding: 0.5em;
     background: #282B2E;
 }
 
