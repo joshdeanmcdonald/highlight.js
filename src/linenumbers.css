@@ -1,9 +1,16 @@
 pre {
-  counter-reset: lines;
+  counter-reset: lines 0;
 }
 
 pre .line {
   counter-increment: lines;
+  font-style: normal;
+}
+
+pre .line:focus,
+pre .line:hover,
+pre .line:active {
+  background: #f8eec7 !important;
 }
 
 pre .line::before {
@@ -11,8 +18,8 @@ pre .line::before {
   text-align: right;
   display: inline-block;
   width: 2em;
-  padding-right: 0.5em;
+  padding: 0.2em 0.5em;
   margin-right: 0.5em;
   color: #BBB;
-  border-right: solid 2px;
+  border-right: solid 1px;
 }
