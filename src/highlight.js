@@ -466,7 +466,7 @@ function() {
   Applies highlighting to a DOM node containing code. Accepts a DOM node and
   two optional parameters for fixMarkup.
   */
-  function highlightBlock(block, tabReplace, useBR) {
+  function highlightBlock(block, tabReplace, useBR, callback) {
     var text = blockText(block, useBR);
     var language = blockLanguage(block);
     if (language == 'no-highlight')
@@ -500,26 +500,30 @@ function() {
         re: result.second_best.relevance
       };
     }
+    if (callback) {
+      callback(block);
+    };
   }
 
   /*
   Applies highlighting to all <pre><code>..</code></pre> blocks on a page.
   */
-  function initHighlighting() {
+  function initHighlighting(callback){
     if (initHighlighting.called)
       return;
     initHighlighting.called = true;
     Array.prototype.map.call(document.getElementsByTagName('pre'), findCode).
       filter(Boolean).
-      forEach(function(code){highlightBlock(code, hljs.tabReplace, false)});
+      forEach(function(code){highlightBlock(code, hljs.tabReplace, false, callback)});
   }
 
   /*
   Attaches highlighting to the page load event.
   */
-  function initHighlightingOnLoad() {
-    window.addEventListener('DOMContentLoaded', initHighlighting, false);
-    window.addEventListener('load', initHighlighting, false);
+  function initHighlightingOnLoad(callback) {
+    var handler = { initHighlight: function() {initHighlighting(callback);} };
+    window.addEventListener('DOMContentLoaded', handler.initHighlight, false);
+    window.addEventListener('load', handler.initHighlight, false);
   }
 
   var languages = {}; // a shortcut to avoid writing "this." everywhere
