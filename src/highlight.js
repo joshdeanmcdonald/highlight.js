@@ -479,7 +479,7 @@ function() {
       pre.innerHTML = result.value;
       result.value = mergeStreams(original, nodeStream(pre), text);
     }
-    result.value = result.value.replace(/^(.*)$[\n\r]/gm, '<div class="line">$1</div>');
+    result.value = result.value.replace(/^(.*)$[\n\r]?/gm, '<div class="line">$1</div>');
     result.value = fixMarkup(result.value, tabReplace, useBR);
 
     var class_name = block.className;
