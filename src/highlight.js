@@ -469,15 +469,18 @@ function() {
   function highlightBlock(block, tabReplace, useBR, callback) {
     var text = blockText(block, useBR);
     var language = blockLanguage(block);
-    if (language == 'no-highlight')
-        return;
-    var result = language ? highlight(language, text, true) : highlightAuto(text);
-    language = result.language;
-    var original = nodeStream(block);
-    if (original.length) {
-      var pre = document.createElement('pre');
-      pre.innerHTML = result.value;
-      result.value = mergeStreams(original, nodeStream(pre), text);
+    var result;
+    if (language == 'no-highlight') {
+      result = { language: 'no-highlight', value: escape(text), keyword_count: 0, relevance: 0 };
+    } else {
+      result = language ? highlight(language, text, true) : highlightAuto(text);
+      language = result.language;
+      var original = nodeStream(block);
+      if (original.length) {
+        var pre = document.createElement('pre');
+        pre.innerHTML = result.value;
+        result.value = mergeStreams(original, nodeStream(pre), text);
+      }
     }
     result.value = result.value.replace(/^(.*)$[\n\r]?/gm, '<div class="line">$1</div>');
     result.value = fixMarkup(result.value, tabReplace, useBR);
