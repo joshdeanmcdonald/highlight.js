@@ -5,13 +5,10 @@ based on dark.css by Ivan Sagalaev
 
 */
 
-html {
-  background: #3F3F3F;
-}
-
-pre code {
-  display: block; padding: 0.5em;
+html,
+pre {
   color: #DCDCDC;
+  background: #3F3F3F;
 }
 
 pre .keyword,

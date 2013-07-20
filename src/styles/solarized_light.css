@@ -4,13 +4,10 @@ Orginal Style from ethanschoonover.com/solarized (c) Jeremy Hull <sourdrums@gmai
 
 */
 
-html {
-  background: #fdf6e3;
-}
-
-pre code {
-  display: block; padding: 0.5em;
+html,
+pre {
   color: #657b83;
+  background: #fdf6e3;
 }
 
 pre .comment,

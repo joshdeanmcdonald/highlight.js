@@ -4,15 +4,10 @@ Railscasts-like style (c) Visoft, Inc. (Damien White)
 
 */
 
-html {
-  background: #232323;
-}
-
-pre code {
-  display: block;
-  padding: 0.5em;
-  background: #232323;
+html,
+pre {
   color: #E6E1DC;
+  background: #232323;
 }
 
 pre .comment,

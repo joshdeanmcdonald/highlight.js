@@ -2,13 +2,10 @@
   IR_Black style (c) Vasily Mikhailitchenko <vaskas@programica.ru>
 */
 
-html {
-  background: #000; 
-}
-
-pre code {
-  display: block; padding: 0.5em;
+html,
+pre {
   color: #f8f8f8;
+  background: #000;
 }
 
 pre .shebang,

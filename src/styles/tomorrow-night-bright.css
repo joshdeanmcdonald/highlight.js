@@ -2,7 +2,9 @@
 /* Original theme - https://github.com/chriskempson/tomorrow-theme */
 /* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
 
-html {
+html,
+pre {
+  color: #eaeaea;
   background: black;
 }
 
@@ -36,12 +38,6 @@ html {
 
 .tomorrow-purple, pre .keyword, pre .javascript .function {
   color: #c397d8;
-}
-
-pre code {
-  display: block;
-  color: #eaeaea;
-  padding: 0.5em;
 }
 
 pre .coffeescript .javascript,

@@ -4,9 +4,9 @@ Brown Paper style from goldblog.com.ua (c) Zaripov Yura <yur4ik7@ukr.net>
 
 */
 
-pre code {
-  display: block; padding: 0.5em;
-  background:#b7a68e url(./brown_papersq.png);
+html,
+pre {
+  background: #b7a68e url(./brown_papersq.png);
 }
 
 pre .keyword,

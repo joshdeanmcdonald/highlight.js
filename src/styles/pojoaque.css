@@ -6,8 +6,8 @@ Based on Solarized Style from http://ethanschoonover.com/solarized
 
 */
 
-pre code {
-  display: block; padding: 0.5em;
+html,
+pre {
   color: #DCCF8F;
   background: url(./pojoaque.jpg) repeat scroll left top #181914;
 }

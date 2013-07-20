@@ -3,14 +3,10 @@
  * ported by Alexander Marenin (http://github.com/ioncreature)
  */
 
-html {
+html,
+pre {
+  color: #E0E2E4;
   background: #282B2E;
-}
-
-pre code {
-    display: block;
-    padding: 0.5em;
-    background: #282B2E;
 }
 
 pre .keyword,
@@ -28,10 +24,6 @@ pre .tex .special {
 
 pre .number {
     color: #FFCD22;
-}
-
-pre code {
-    color: #E0E2E4;
 }
 
 pre .css .tag,

@@ -2,15 +2,10 @@
   Five-color theme from a single blue hue.
 */
 
-html {
-  background: #EAEEF3;
-}
-
-pre code {
-  display: block;
-  padding: 0.5em;
-  background: #EAEEF3;
+html,
+pre {
   color: #00193A;
+  background: #EAEEF3;
 }
 
 pre .keyword,

@@ -4,12 +4,12 @@ Original style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiac
 
 */
 
-pre code {
-  display: block; padding: 0.5em;
+html,
+pre {
+  color: black;
   background: #F0F0F0;
 }
 
-pre code,
 pre .subst,
 pre .tag .title,
 pre .lisp .title,

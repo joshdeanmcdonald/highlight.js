@@ -2,12 +2,10 @@
 Monokai style - ported by Luigi Maselli - http://grigio.org
 */
 
-html {
+html,
+pre {
+  color: #DDD;
   background: #272822;
-}
-
-pre code {
-  display: block; padding: 0.5em;
 }
 
 pre .tag,
@@ -23,10 +21,6 @@ pre .clojure .built_in,
 pre .nginx .title,
 pre .tex .special {
   color: #F92672;
-}
-
-pre code {
-  color: #DDD;
 }
 
 pre code .constant {

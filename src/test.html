@@ -38,6 +38,10 @@
   <link rel="alternate stylesheet" title="Foundation" href="styles/foundation.css">
 
   <style>
+    html {
+      color: #111;
+      background: white;
+    }
     body {
       font: small Arial, sans-serif;
     }
@@ -61,7 +65,14 @@
       text-align: left;
     }
     pre {
-      margin: 0; font-size: medium;
+      margin: 0;
+      line-height: 1.6;
+      font-size: medium;
+      font-family: Consolas, 'Liberation Mono', Courier, monospace;
+    }
+    pre code {
+      display: block;
+      border: 1px solid #CCC;
     }
     #switch {
       overflow: auto; width: 67em;

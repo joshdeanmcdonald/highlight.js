@@ -2,15 +2,10 @@
 Docco style used in http://jashkenas.github.com/docco/ converted by Simon Madine (@thingsinjars)
 */
 
-html {
-  background: #f8f8ff;
-}
-
-pre code {
-  display: block;
-  padding: 0.5em;
+html,
+pre {
   color: #000;
-  background: #f8f8ff
+  background: #f8f8ff;
 }
 
 pre .comment,

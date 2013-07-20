@@ -4,15 +4,12 @@ FAR Style (c) MajestiC <majestic2k@gmail.com>
 
 */
 
-html {
+html,
+pre {
+  color: #0FF;
   background: #000080;
 }
 
-pre code {
-  display: block; padding: 0.5em;
-}
-
-pre code,
 pre .subst {
   color: #0FF;
 }

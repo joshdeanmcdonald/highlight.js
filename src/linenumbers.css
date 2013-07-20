@@ -10,16 +10,17 @@ pre .line {
 pre .line:focus,
 pre .line:hover,
 pre .line:active {
-  background: #f8eec7 !important;
+  background: #f8eec7;
 }
 
 pre .line::before {
-  content: counter(lines);
-  text-align: right;
   display: inline-block;
+  content: counter(lines);
   width: 2em;
-  padding: 0.2em 0.5em;
-  margin-right: 0.5em;
   color: #BBB;
+  margin-right: 0.5em;
   border-right: solid 1px;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  text-align: right;
 }

@@ -1,6 +1,8 @@
 /* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
 
-html {
+html,
+pre {
+  color: #4d4d4c;
   background: white;
 }
 
@@ -34,12 +36,6 @@ html {
 
 .tomorrow-purple, pre .keyword, pre .javascript .function {
   color: #8959a8;
-}
-
-pre code {
-  display: block;
-  color: #4d4d4c;
-  padding: 0.5em;
 }
 
 pre .coffeescript .javascript,
