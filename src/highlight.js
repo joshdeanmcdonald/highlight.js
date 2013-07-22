@@ -482,9 +482,12 @@ function() {
         result.value = mergeStreams(original, nodeStream(pre), text);
       }
     }
-    result.value = result.value.replace(/^(.*)$[\n\r]?/gm, '<div class="line">$1</div>');
+    var ln = 0;
+    var lineReplacement = function(match, content, offset, string) {
+      return '<div class="line" data-ln="' + (++ln) + '">' + content + '</div>';
+    };
+    result.value = result.value.replace(/^(.*)$[\n\r]?/gm, lineReplacement);
     result.value = fixMarkup(result.value, tabReplace, useBR);
-
     var class_name = block.className;
     if (!class_name.match('(\\s|^)(language-)?' + language + '(\\s|$)')) {
       class_name = class_name ? (class_name + ' ' + language) : language;

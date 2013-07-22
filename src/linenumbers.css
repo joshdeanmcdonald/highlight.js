@@ -1,9 +1,4 @@
-pre {
-  counter-reset: lines 0;
-}
-
 pre .line {
-  counter-increment: lines;
   font-style: normal;
 }
 
@@ -15,7 +10,7 @@ pre .line:active {
 
 pre .line::before {
   display: inline-block;
-  content: counter(lines);
+  content: attr(data-ln);
   width: 2em;
   color: #BBB;
   margin-right: 0.5em;
