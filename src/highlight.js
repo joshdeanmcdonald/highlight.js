@@ -484,7 +484,7 @@ function() {
     }
     var ln = 0;
     var lineReplacement = function(match, content, offset, string) {
-      return '<div class="line" data-ln="' + (++ln) + '">' + content + '</div>';
+      return '<div class="line"><mark data-ln="' + (++ln) + '"></mark>' + content + '</div>';
     };
     result.value = result.value.replace(/^(.*)$[\n\r]?/gm, lineReplacement);
     result.value = fixMarkup(result.value, tabReplace, useBR);
