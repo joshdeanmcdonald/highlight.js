@@ -2,3 +2,5 @@
 build
 docs/_build
 src/test-*
+__pycache__
+*.swp
