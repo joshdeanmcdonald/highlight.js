@@ -3,8 +3,7 @@
 Visual Studio-like style based on original C# coloring by Jason Diamond <jason@diamond.name>
 
 */
-.hljs {
-  display: block; padding: 0.5em;
+html {
   background: white; color: black;
 }
 

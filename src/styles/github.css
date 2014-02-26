@@ -4,8 +4,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
 */
 
-.hljs {
-  display: block; padding: 0.5em;
+html {
   color: #333;
   background: #f8f8f8
 }

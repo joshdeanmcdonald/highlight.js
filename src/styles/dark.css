@@ -4,8 +4,7 @@ Dark style from softwaremaniacs.org (c) Ivan Sagalaev <Maniac@SoftwareManiacs.Or
 
 */
 
-.hljs {
-  display: block; padding: 0.5em;
+html {
   background: #444;
 }
 
