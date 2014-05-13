@@ -1,6 +1,6 @@
 .DS_Store
 build
 docs/_build
-src/test-*
+.idea/
 __pycache__
 *.swp
