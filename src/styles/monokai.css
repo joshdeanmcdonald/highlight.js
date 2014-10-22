@@ -14,20 +14,19 @@ html {
 .hljs-change,
 .hljs-winutils,
 .hljs-flow,
-.lisp .hljs-title,
-.clojure .hljs-built_in,
 .nginx .hljs-title,
 .tex .hljs-special {
-  color: #F92672;
+  color: #f92672;
 }
 
 .hljs {
-  color: #DDD;
+  color: #ddd;
 }
 
 .hljs .hljs-constant,
-.asciidoc .hljs-code {
-	color: #66D9EF;
+.asciidoc .hljs-code,
+.markdown .hljs-code {
+	color: #66d9ef;
 }
 
 .hljs-code,
@@ -42,7 +41,7 @@ html {
 .hljs-symbol .hljs-string,
 .hljs-value,
 .hljs-regexp {
-	color: #BF79DB;
+	color: #bf79db;
 }
 
 .hljs-link_url,
@@ -52,7 +51,7 @@ html {
 .hljs-subst,
 .hljs-title,
 .hljs-emphasis,
-.haskell .hljs-type,
+.hljs-type,
 .hljs-preprocessor,
 .hljs-pragma,
 .ruby .hljs-class .hljs-parent,
@@ -73,15 +72,15 @@ html {
 .apache .hljs-cbracket,
 .tex .hljs-command,
 .hljs-prompt {
-  color: #A6E22E;
+  color: #a6e22e;
 }
 
 .hljs-comment,
-.java .hljs-annotation,
+.hljs-annotation,
 .smartquote,
 .hljs-blockquote,
 .hljs-horizontal_rule,
-.python .hljs-decorator,
+.hljs-decorator,
 .hljs-template_comment,
 .hljs-pi,
 .hljs-doctype,
@@ -89,16 +88,17 @@ html {
 .hljs-shebang,
 .apache .hljs-sqbracket,
 .tex .hljs-formula {
-  color: #75715E;
+  color: #75715e;
 }
 
 .hljs-keyword,
 .hljs-literal,
 .css .hljs-id,
 .hljs-phpdoc,
+.hljs-dartdoc,
 .hljs-title,
 .hljs-header,
-.haskell .hljs-type,
+.hljs-type,
 .vbscript .hljs-built_in,
 .rsl .hljs-built_in,
 .smalltalk .hljs-class,

@@ -12,6 +12,7 @@ html {
 .hljs-tag,
 .css .hljs-rules,
 .css .hljs-value,
+.aspectj .hljs-function,
 .css .hljs-function
 .hljs-preprocessor,
 .hljs-pragma {
@@ -59,6 +60,8 @@ html {
 }
 
 .hljs-keyword,
+.ruby .hljs-class .hljs-keyword:first-child,
+.ruby .hljs-function .hljs-keyword,
 .hljs-function,
 .hljs-change,
 .hljs-winutils,
@@ -82,6 +85,7 @@ html {
 
 .hljs-function .hljs-keyword,
 .hljs-class .hljs-keyword:first-child,
+.hljs-aspect .hljs-keyword:first-child,
 .hljs-constant,
 .css .hljs-attribute {
   color: #66d9ef;
@@ -89,7 +93,8 @@ html {
 
 .hljs-variable,
 .hljs-params,
-.hljs-class .hljs-title {
+.hljs-class .hljs-title,
+.hljs-aspect .hljs-title {
   color: #f8f8f2;
 }
 
