@@ -4,14 +4,9 @@
   Original theme - https://github.com/chriskempson/tomorrow-theme
 */
 
-.hljs {
-  display: block;
-  overflow-x: auto;
-  padding: 0.5em;
+html {
   background: #222;
   color: #fff;
-  font-family: Menlo, Monaco, 'Andale Mono', 'Lucida Console', 'Courier New', monospace;
-  -webkit-text-size-adjust: none;
 }
 
 .hljs-comment,

@@ -3,6 +3,11 @@
 /* Original Base16 color scheme by Chris Kempson (https://github.com/chriskempson/base16) */
 /* https://github.com/jmblog/color-themes-for-highlightjs */
 
+html {
+  background: #1f292e;
+  color: #7ea2b4;
+}
+
 /* Atelier Lakeside Dark Comment */
 .hljs-comment,
 .hljs-title {
@@ -73,15 +78,6 @@
 .hljs-keyword,
 .javascript .hljs-function {
   color: #5d5db1;
-}
-
-.hljs {
-  display: block;
-  overflow-x: auto;
-  background: #1f292e;
-  color: #7ea2b4;
-  padding: 0.5em;
-  -webkit-text-size-adjust: none;
 }
 
 .coffeescript .javascript,

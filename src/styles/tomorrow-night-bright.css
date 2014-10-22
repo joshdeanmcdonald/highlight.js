@@ -2,6 +2,11 @@
 /* Original theme - https://github.com/chriskempson/tomorrow-theme */
 /* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
 
+html {
+  background: black;
+  color: #eaeaea;
+}
+
 /* Tomorrow Comment */
 .hljs-comment {
   color: #969896;
@@ -72,15 +77,6 @@
 .hljs-keyword,
 .javascript .hljs-function {
   color: #c397d8;
-}
-
-.hljs {
-  display: block;
-  overflow-x: auto;
-  background: black;
-  color: #eaeaea;
-  padding: 0.5em;
-  -webkit-text-size-adjust: none;
 }
 
 .coffeescript .javascript,

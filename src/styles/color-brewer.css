@@ -6,12 +6,9 @@ Ported by Fabrício Tavares de Oliveira
 
 */
 
-.hljs {
-  display: block;
-  overflow-x: auto;
-  padding: 0.5em;
+html {
+  color: #000;
   background: #fff;
-  -webkit-text-size-adjust: none;
 }
 
 .hljs,
