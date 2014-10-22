@@ -1,3 +1,9 @@
 #!/bin/bash
-python3 tools/build.py
+
+set -e
+
+npm install
+
+node tools/build.js
+
 cp build/highlight.pack.js ../ioctocat-ios/Assets/highlight/highlight.pack.js
